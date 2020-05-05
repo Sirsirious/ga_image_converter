@@ -31,7 +31,8 @@ def edit_image(image_path, new_name='', destination_path='./', xsize=0, ysize=0,
         if rotate_degrees > 0:
             img = img.rotate(rotate_degrees)
         file_path = destination_path+img_name+img_format
-        print(file_path)
+        if 'jp' in img_format.lower():
+            img = img.convert('RGB')
         img.save(file_path)
         return True
     except OSError as e:
